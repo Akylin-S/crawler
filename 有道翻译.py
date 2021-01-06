@@ -5,6 +5,7 @@ import json
 
 def fanyi():
     url = 'http://fanyi.youdao.com/translate?smartresult=dict&smartresult=rule'
+    # post请求要发送的表单
     data = {}
     data['i'] = content
     data['from'] = 'AUTO'
@@ -17,10 +18,13 @@ def fanyi():
     data['version'] = '2.1'
     data['keyfrom'] = 'fanyi.web'
     data['action'] = 'FY_BY_REALTTIME'
+
     data = urllib.parse.urlencode(data).encode('utf-8')
+
     response = urllib.request.urlopen(url, data)
     html = response.read().decode('utf-8')
     target = json.loads(html)
+    print
     print('翻译:%s' % (target['translateResult'][0][0]['tgt'])+'\n')
 
 
